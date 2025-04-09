@@ -1,0 +1,13 @@
+package equipements.insertion.telephone;
+
+import equipements.insertion.Enregistrement;
+
+public class Enregistrertelephone implements Enregistrement {
+
+	public void enregistrer(T) {
+		// TODO Auto-generated method stub
+		
+	}
+	
+
+}

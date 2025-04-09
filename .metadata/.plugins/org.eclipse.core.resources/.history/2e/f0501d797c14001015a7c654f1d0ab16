@@ -1,0 +1,46 @@
+package equipements.suppression.ordinateur;
+import equipements.suppression.Supprimer;
+
+import java.sql.Connection;
+import java.sql.PreparedStatement ;
+import java.sql.ResultSet ;
+import java.sql.SQLException ;
+
+import databaseconnexion.DatabaseConnection;
+import equipement.ordinateur.Ordinateur;
+
+public class Suppressionordi implements Supprimer {
+		Connection connection ;
+		Ordinateur  equipement ;
+		String sql ;
+		PreparedStatement pst ;
+		ResultSet  rst ;
+		
+		public void supprimer(Ordinateur  equipement) throws SQLException {	
+			this.equipement = equipement ;
+			connection = DatabaseConnection.getInstance().getConnection();
+			
+			
+		
+	}
+
+		@Override
+		public void supprimer(String address_mac) throws Exception {
+			try {
+				sql = "DELETE FROM Telephone where imei = ?";
+				pst = connection.prepareStatement(sql) ;
+				pst.setString(1, equipement.getAddress_mac());
+				pst.executeUpdate() ;
+			}catch (Exception e) {
+				throw new SQLException() ;
+			}
+			
+			// TODO Auto-generated method stub
+			
+		}
+	
+
+}
+
+
+

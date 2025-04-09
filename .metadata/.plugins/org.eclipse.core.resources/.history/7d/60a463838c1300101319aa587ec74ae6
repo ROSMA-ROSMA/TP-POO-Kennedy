@@ -1,0 +1,11 @@
+package utilisateur;
+import java.util.Date; 
+
+public class Equip_vole extends Equipement {
+	Date date_vol ;
+	String preuvesproprietes ;
+	String infosconnexion ;
+	
+	
+
+}

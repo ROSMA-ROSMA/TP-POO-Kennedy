@@ -1,0 +1,42 @@
+package equipements.suppression.Objet;
+
+import equipements.suppression.Supprimer;
+import equipements.telephone.Telephone;
+import utilisateur.Equipement;
+
+import java.sql.Connection;
+import java.sql.PreparedStatement ;
+import java.sql.ResultSet ;
+import java.sql.SQLException ;
+
+import databaseconnexion.DatabaseConnection;
+
+public class Suppressionequip implements Supprimer {
+		Connection connection ;
+		Telephone equipement ;
+		String sql ;
+		PreparedStatement pst ;
+		ResultSet  rst ;
+		
+		public void supprimer(Telephone equipement) throws SQLException {	
+			this.equipement = equipement ;
+			connection = DatabaseConnection.getInstance().getConnection();
+			
+			
+		
+	}
+
+		@Override
+		public void supprimer(String Id) throws Exception {
+			try {
+				sql = "DELETE FROM Telephone where imei = ?";
+				pst = connection.prepareStatement(sql) ;
+				pst.setString(1, equipement.getImei());
+				pst.execute.Update() ;
+			}
+			// TODO Auto-generated method stub
+			
+		};
+	
+
+}

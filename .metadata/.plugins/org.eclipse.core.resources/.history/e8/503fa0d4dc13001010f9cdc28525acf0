@@ -1,0 +1,11 @@
+package equipements.suppression.Objet;
+
+import equipements.suppression.Supprimer;
+
+public class Suppressionequip implements Supprimer {
+	public void supprimer() {
+		
+	};
+	
+
+}

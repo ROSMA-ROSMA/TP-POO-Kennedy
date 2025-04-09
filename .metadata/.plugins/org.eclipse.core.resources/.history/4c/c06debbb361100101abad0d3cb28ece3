@@ -1,0 +1,9 @@
+package utilisateur;
+
+public class Equipement {
+
+	public Equipement() {
+		// TODO Auto-generated constructor stub
+	}
+
+}

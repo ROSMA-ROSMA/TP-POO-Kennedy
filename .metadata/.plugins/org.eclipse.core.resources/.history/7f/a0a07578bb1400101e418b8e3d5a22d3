@@ -1,0 +1,144 @@
+package equipement.ordinateur ;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.*;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
+
+/**
+ * Contrôleur pour gérer les actions des boutons de l'interface utilisateur
+ * pour l'objet Téléphone (enregistrer, supprimer, mettre à jour)
+ */
+@Controller
+@RequestMapping("/telephones")
+public class TelephoneButtonController {
+
+    private final TelephoneService telephoneService;
+
+    @Autowired
+    public TelephoneButtonController(TelephoneService telephoneService) {
+        this.telephoneService = telephoneService;
+    }
+
+    /**
+     * Affiche le formulaire pour créer un nouveau téléphone
+     */
+    @GetMapping("/nouveau")
+    public String afficherFormulaireCreation(Model model) {
+        model.addAttribute("telephone", new Telephone());
+        model.addAttribute("mode", "creation");
+        return "telephone/formulaire";
+    }
+
+    /**
+     * Traite l'action du bouton "Enregistrer" pour créer un nouveau téléphone
+     */
+    @PostMapping("/enregistrer")
+    public String enregistrerTelephone(@ModelAttribute Telephone telephone, RedirectAttributes redirectAttributes) {
+        try {
+            Telephone nouveauTelephone = telephoneService.sauvegarderTelephone(telephone);
+            redirectAttributes.addFlashAttribute("message", "Le téléphone a été enregistré avec succès!");
+            redirectAttributes.addFlashAttribute("alertClass", "alert-success");
+            return "redirect:/telephones/liste";
+        } catch (Exception e) {
+            redirectAttributes.addFlashAttribute("message", "Erreur lors de l'enregistrement du téléphone: " + e.getMessage());
+            redirectAttributes.addFlashAttribute("alertClass", "alert-danger");
+            return "redirect:/telephones/nouveau";
+        }
+    }
+
+    /**
+     * Affiche le formulaire pour modifier un téléphone existant
+     */
+    @GetMapping("/editer/{id}")
+    public String afficherFormulaireEdition(@PathVariable Long id, Model model, RedirectAttributes redirectAttributes) {
+        try {
+            Telephone telephone = telephoneService.trouverTelephoneParId(id)
+                    .orElseThrow(() -> new IllegalArgumentException("Téléphone invalide avec l'ID: " + id));
+            model.addAttribute("telephone", telephone);
+            model.addAttribute("mode", "edition");
+            return "telephone/formulaire";
+        } catch (Exception e) {
+            redirectAttributes.addFlashAttribute("message", "Erreur: " + e.getMessage());
+            redirectAttributes.addFlashAttribute("alertClass", "alert-danger");
+            return "redirect:/telephones/liste";
+        }
+    }
+
+    /**
+     * Traite l'action du bouton "Mettre à jour" pour modifier un téléphone existant
+     */
+    @PostMapping("/mettreajour/{id}")
+    public String mettreAJourTelephone(@PathVariable Long id, @ModelAttribute Telephone telephone, 
+                                     RedirectAttributes redirectAttributes) {
+        try {
+            // Vérifier si le téléphone existe
+            telephoneService.trouverTelephoneParId(id)
+                    .orElseThrow(() -> new IllegalArgumentException("Téléphone invalide avec l'ID: " + id));
+            
+            // Mettre à jour le téléphone
+            telephone.setId(id);
+            telephoneService.sauvegarderTelephone(telephone);
+            
+            redirectAttributes.addFlashAttribute("message", "Le téléphone a été mis à jour avec succès!");
+            redirectAttributes.addFlashAttribute("alertClass", "alert-success");
+            return "redirect:/telephones/liste";
+        } catch (Exception e) {
+            redirectAttributes.addFlashAttribute("message", "Erreur lors de la mise à jour du téléphone: " + e.getMessage());
+            redirectAttributes.addFlashAttribute("alertClass", "alert-danger");
+            return "redirect:/telephones/editer/" + id;
+        }
+    }
+
+    /**
+     * Traite l'action du bouton "Supprimer" pour supprimer un téléphone
+     */
+    @PostMapping("/supprimer/{id}")
+    public String supprimerTelephone(@PathVariable Long id, RedirectAttributes redirectAttributes) {
+        try {
+            // Vérifier si le téléphone existe
+            telephoneService.trouverTelephoneParId(id)
+                    .orElseThrow(() -> new IllegalArgumentException("Téléphone invalide avec l'ID: " + id));
+            
+            // Supprimer le téléphone
+            telephoneService.supprimerTelephone(id);
+            
+            redirectAttributes.addFlashAttribute("message", "Le téléphone a été supprimé avec succès!");
+            redirectAttributes.addFlashAttribute("alertClass", "alert-success");
+        } catch (Exception e) {
+            redirectAttributes.addFlashAttribute("message", "Erreur lors de la suppression du téléphone: " + e.getMessage());
+            redirectAttributes.addFlashAttribute("alertClass", "alert-danger");
+        }
+        return "redirect:/telephones/liste";
+    }
+
+    /**
+     * Affiche la liste de tous les téléphones
+     */
+    @GetMapping("/liste")
+    public String afficherListeTelephones(Model model) {
+        model.addAttribute("telephones", telephoneService.trouverTousTelephones());
+        return "telephone/liste";
+    }
+
+    /**
+     * Affiche les détails d'un téléphone spécifique
+     */
+    @GetMapping("/details/{id}")
+    public String afficherDetailsTelephone(@PathVariable Long id, Model model, RedirectAttributes redirectAttributes) {
+        try {
+            Telephone telephone = telephoneService.trouverTelephoneParId(id)
+                    .orElseThrow(() -> new IllegalArgumentException("Téléphone invalide avec l'ID: " + id));
+            model.addAttribute("telephone", telephone);
+            return "telephone/details";
+        } catch (Exception e) {
+            redirectAttributes.addFlashAttribute("message", "Erreur: " + e.getMessage());
+            redirectAttributes.addFlashAttribute("alertClass", "alert-danger");
+            return "redirect:/telephones/liste";
+        }
+    }
+}
+
+public class Controlleurordinateur {
+
+}

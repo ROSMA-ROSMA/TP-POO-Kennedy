@@ -1,0 +1,9 @@
+package utilisateur;
+
+public class ChangerEtat {
+
+	public ChangerEtat() {
+		// TODO Auto-generated constructor stub
+	}
+
+}

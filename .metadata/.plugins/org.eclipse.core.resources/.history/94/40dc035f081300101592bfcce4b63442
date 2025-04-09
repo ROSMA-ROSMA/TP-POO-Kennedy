@@ -1,0 +1,10 @@
+package utilisateur;
+
+public class Enregistrer {
+	Equipement equipement ;
+
+	public Enregistrer() {
+		// TODO Auto-generated constructor stub
+	}
+
+}

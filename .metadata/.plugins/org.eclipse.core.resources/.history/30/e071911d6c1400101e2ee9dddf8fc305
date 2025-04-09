@@ -1,0 +1,33 @@
+package equipements.suppression.Objet;
+
+import equipements.suppression.Supprimer;
+import utilisateur.Equipement;
+
+import java.sql.Connection;
+import java.sql.PreparedStatement ;
+import java.sql.ResultSet ;
+import java.sql.SQLException ;
+
+public class Suppressionequip implements Supprimer {
+		Connection connection ;
+		Equipement equipement ;
+		String sql ;
+		PreparedStatement pst ;
+		ResultSet  rst ;
+		
+		public void supprimer(Equipement equipement) {	
+			this.equipement = equipement ;
+			connection = DatabaseConnection.getInstance().getConnection();
+			
+			
+		
+	}
+
+		@Override
+		public void supprimer(String Id) {
+			// TODO Auto-generated method stub
+			
+		};
+	
+
+}

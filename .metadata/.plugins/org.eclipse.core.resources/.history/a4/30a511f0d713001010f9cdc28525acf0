@@ -1,0 +1,5 @@
+package equipements.suppression;
+
+public interface Supprimer {
+
+}

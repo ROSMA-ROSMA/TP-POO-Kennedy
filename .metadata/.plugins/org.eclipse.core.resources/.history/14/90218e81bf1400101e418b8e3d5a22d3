@@ -1,0 +1,12 @@
+package databaseconnexion;
+
+import java.sql.Statement;
+
+public class DatabaseConnection {
+
+	public static Statement getInstance() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+}

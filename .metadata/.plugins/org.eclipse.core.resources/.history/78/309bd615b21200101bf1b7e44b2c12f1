@@ -1,0 +1,16 @@
+package utilisateur;
+
+public abstract class Equipement {
+	String nom ;
+	String type ;
+	String  marque ;
+	String modele ;
+	String numero_serie ;
+	
+	
+
+	public Equipement() {
+		// TODO Auto-generated constructor stub
+	}
+
+}

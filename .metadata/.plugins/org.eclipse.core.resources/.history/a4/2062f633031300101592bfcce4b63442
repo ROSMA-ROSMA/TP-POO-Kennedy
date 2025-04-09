@@ -1,0 +1,13 @@
+package utilisateur;
+import java.util.Scanner ;
+
+public class Sinscrire {
+	public void inscrire() {
+		Scanner sc = new Scanner( System.in );
+		System.out.println(	"entrez votre nom utilisateur ") ;
+		String utile = sc.nextLine() ;
+		System.out.println(	"entrez votre mot de passe  ") ;
+		String mot  = sc.nextLine() ;
+	}
+
+}

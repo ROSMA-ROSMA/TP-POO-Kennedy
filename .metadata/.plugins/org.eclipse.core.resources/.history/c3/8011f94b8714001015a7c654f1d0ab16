@@ -1,0 +1,22 @@
+package equipements.miseajour.telephone;
+
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.SQLException;
+
+import equipement.ordinateur.Ordinateur;
+import equipements.insertion.interfaces.Enregistrement;
+import equipements.miseajour.interfaces.Update;
+import equipements.telephone.Telephone;
+
+
+public class Miseajourtelephone implements Update {
+
+	@Override
+	public void mettrejour( Connection conn , String Imei) {
+		// TODO Auto-generated method stub
+		
+	}
+	
+
+}

@@ -1,0 +1,9 @@
+package equipement.ordinateur;
+
+import utilisateur.Equipement;
+
+public class Ordinateur extends Equipement {
+	String address_mac ;
+	
+
+}

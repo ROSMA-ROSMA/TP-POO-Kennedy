@@ -1,0 +1,27 @@
+package equipements.insertion.ordinateur;
+import equipement.ordinateur;
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+
+import equipements.insertion.Enregistrement;
+
+public class Ordinateurinsertion  implements Enregistrement {
+
+	@Override
+	public void enregistrer(Connection conn) {
+		String query = "INSERT INTO Ordinateur( nom , type , marque , modele ,numero_serie, addresse_mac ) VALUES (?,?,?,?,?)" ;
+		try (PreparedStatement pts = conn.prepareStatement(query)){
+			pts.setString(1, this.getNom());
+			pts.setString(1, this.getType());
+			pts.setString(1, this.getAddress_mac());
+			pts.setString(1, this.getMarque());
+			pts.setString(1, this.getModele());
+			pts.setString(1, this.getNumero_serie);
+			
+		}
+		// TODO Auto-generated method stub
+		
+	}
+	
+
+}

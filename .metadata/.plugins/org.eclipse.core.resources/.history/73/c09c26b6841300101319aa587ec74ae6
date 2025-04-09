@@ -1,0 +1,9 @@
+package utilisateur;
+
+public class Declarervoler {
+
+	public Declarervoler() {
+		// TODO Auto-generated constructor stub
+	}
+
+}

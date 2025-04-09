@@ -1,0 +1,12 @@
+package services;
+
+import utilisateur.Equip_vole;
+
+public class ChangerEtat {
+	Equip_vole equipement  ;
+
+	public ChangerEtat() {
+		// TODO Auto-generated constructor stub
+	}
+
+}

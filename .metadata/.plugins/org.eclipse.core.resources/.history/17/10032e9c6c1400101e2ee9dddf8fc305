@@ -1,0 +1,6 @@
+package equipements.suppression;
+
+public interface Supprimer {
+	public void supprimer(String Id ) ;
+
+}

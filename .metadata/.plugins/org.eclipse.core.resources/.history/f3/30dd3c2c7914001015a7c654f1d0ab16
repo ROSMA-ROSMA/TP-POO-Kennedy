@@ -1,0 +1,6 @@
+package equipements.insertion;
+
+public interface Enregistrement {
+	public void enregistrer () ;
+
+}

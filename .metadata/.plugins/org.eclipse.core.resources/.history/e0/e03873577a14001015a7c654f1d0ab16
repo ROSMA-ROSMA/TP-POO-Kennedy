@@ -1,0 +1,83 @@
+package equipements.insertion.ordinateur;
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+
+import equipements.insertion.Enregistrement;
+
+public class Ordinateurinsertion  implements Enregistrement {
+	String nom ;
+	String type ;
+	String  marque ;
+	String modele ;
+	String numero_serie ;
+	String etat;
+	String address_mac ;
+	public String getNom() {
+        return nom;
+    }
+
+    public String getType() {
+        return type;
+    }
+
+    public String getNumero_serie() {
+	return numero_serie;
+    }
+
+    public String getMarque() {
+        return marque;
+    }
+
+    public String getModele() {
+        return modele;
+    }
+    public void setNom(String nom) {
+    this.nom = nom;
+}
+
+    public void setType(String type) {
+    this.type = type;
+}
+
+    public void setNumeroSerie(String numero_serie) {
+    this.numero_serie = numero_serie;
+}
+
+    public void setMarque(String marque) {
+    this.marque = marque;
+}
+
+    public void setModele(String modele) {
+	
+    this.modele = modele;
+}
+    public String getAddress_mac() {
+    return address_mac;
+}
+
+    public void setAddress_mac(String address_mac ) {
+    this.address_mac = address_mac;
+}
+
+	
+
+
+	@Override
+	public void enregistrer(Connection conn) {
+		String query = "INSERT INTO Ordinateur( nom , type , marque , modele ,numero_serie, addresse_mac ) VALUES (?,?,?,?,?)" ;
+		try (PreparedStatement pts = conn.prepareStatement(query)){
+			pts.setString(1, this.getNom());
+			pts.setString(2, this.getType());
+			pts.setString(3, this.getAddress_mac());
+			pts.setString(4, this.getMarque());
+			pts.setString(5, this.getModele());
+			pts.setString(6, this.getNumero_serie());
+			pts.executeUpdate( ;)
+			
+		}
+		// TODO Auto-generated method stub
+		
+	}
+	
+
+}
